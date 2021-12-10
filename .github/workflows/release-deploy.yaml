@@ -27,4 +27,4 @@ jobs:
         with:
           service_account_email: ${{ secrets.GCP_SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
-      - run: gsutil -m rsync -d -c -r /dist/spa gs://adata.games
+      - run: gsutil -m rsync -d -c -r dist/spa gs://adata.games
