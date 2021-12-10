@@ -21,7 +21,7 @@ jobs:
         run: yarn install --frozen-lockfile
         
       - name: Build production APP
-        run: npm build:prd
+        run: npm run build:prd
         
       - uses: google-github-actions/setup-gcloud@master
         with:
