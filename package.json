@@ -1,8 +1,8 @@
 {
   "name": "dhd2-frontend",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "Um parceirão para no seu empreendedorismo",
+  "productName": "Parceirão",
   "author": "gefersonrd <geferson.rd@gmail.com>",
   "private": true,
   "scripts": {
