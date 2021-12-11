@@ -1,5 +1,12 @@
 <template>
   <div class="q-pa-md q-gutter-md"></div>
+  <q-banner class="bg-primary text-white">
+      Oportunidade! O preço do insumo "Milho para Pipoca Yoki" baixou. Valor atual R$ 1,85.
+      <template v-slot:action>
+        <q-btn flat color="white" label="Ver" />
+        <q-btn flat color="white" label="Fechar" />
+      </template>
+    </q-banner>
   <q-item clickable v-ripple style="margin-top:3em;">
     <q-item-section side>
       <q-avatar>
@@ -8,35 +15,80 @@
     </q-item-section>
     <q-item-section @click="nivel = true">
       <q-item-label>Olá, João Pipoqueiro</q-item-label>
-      <q-item-label>Nivel 1 - 10/100 XP</q-item-label>
+      <q-item-label>Nivel 1 - 20/100 XP</q-item-label>
     </q-item-section>
   </q-item>
-  <q-list bordered class="rounded-borders" style="max-width: 350px;margin-top: 20px">
-    <q-item-label header>Missões</q-item-label>
+  <q-list>
+      <q-item>
+        <q-item-section>
+          <q-item-label>Você alcançou o Nível 2</q-item-label>
+          <q-item-label caption lines="2">Parabéns você passou de nível e desbloqueou recompensas.</q-item-label>
+        </q-item-section>
 
-    <q-item clickable v-ripple @click="card = true">
-      <q-item-section>
-        <q-item-label lines="1">Realize 5 vendas</q-item-label>
-        <q-item-label caption lines="2">
-        </q-item-label>
-      </q-item-section>
-      <q-item-section side top>
-        0/5
-      </q-item-section>
-    </q-item>
+        <q-item-section side top>
+          <q-item-label caption>5 min atrás</q-item-label>
+          <q-icon name="star" color="yellow" />
+        </q-item-section>
+      </q-item>
 
-    <q-separator/>
+      <q-separator spaced inset />
 
-    <q-item clickable v-ripple @click="card_2 = true">
-      <q-item-section>
-        <q-item-label lines="2">Realize 2 vendas maiores que R$ 50,00</q-item-label>
-      </q-item-section>
+      <q-item>
+        <q-item-section>
+          <q-item-label>Novo Gráfico liberado!</q-item-label>
+          <q-item-label caption>Você liberou o gráfico de Perfil de estabelecimento, confira!</q-item-label>
 
-      <q-item-section side top>
-        0/2
-      </q-item-section>
-    </q-item>
-  </q-list>
+        </q-item-section>
+
+        <q-item-section side top>
+          <q-item-label caption>5 min atrás</q-item-label>
+          <q-icon name="analytics" color="blue" />
+        </q-item-section>
+      </q-item>
+
+      <q-separator spaced inset />
+
+      <q-item>
+        <q-item-section>
+          <q-item-label>Você completou uma missão</q-item-label>
+          <q-item-label caption>Você completou a missão "Realize 5 vendas" e ganhou 10XP.</q-item-label>
+        </q-item-section>
+
+        <q-item-section side top>
+          <q-badge color="teal" label="10XP" />
+        </q-item-section>
+      </q-item>
+
+      <q-separator spaced inset />
+
+      <q-item>
+        <q-item-section>
+          <q-item-label>Oportunidade</q-item-label>
+          <q-item-label caption>Aproveite a baixa do preço do insumo "Milho de Pipoca Yoki" por R$ 1,85 .</q-item-label>
+        </q-item-section>
+
+        <q-item-section side top>
+          <q-item-label caption>5 horas atrás</q-item-label>
+
+          <q-icon name="attach_money" style="color: darkgreen" />
+
+        </q-item-section>
+      </q-item>
+
+      <q-separator spaced inset />
+
+      <q-item>
+        <q-item-section>
+          <q-item-label>Você ingressou no aData</q-item-label>
+          <q-item-label caption>Seja bem vindo, agora você faz parte do programa de ...</q-item-label>
+        </q-item-section>
+
+        <q-item-section side top>
+          <q-item-label caption>10/12/2021</q-item-label>
+          <q-icon name="flag_circle" style="color: steelblue" />
+        </q-item-section>
+      </q-item>
+    </q-list>
   <q-dialog v-model="nivel">
     <q-card class="my-card">
       <q-card-section>
@@ -53,7 +105,7 @@
 
       <q-card-section class="q-pt-none">
         <div class="text-subtitle1">
-          XP Atual: <strong>10/100</strong>
+          XP Atual: <strong>20/100</strong>
         </div>
 
       </q-card-section>
@@ -231,7 +283,7 @@
       <q-tab name="images" label="Missões" @click=" mission_complete = true"/>
       <q-route-tab
         label="Conquistas"
-        to="/conquistas"
+        to="/"
         exact
       />
       <q-route-tab

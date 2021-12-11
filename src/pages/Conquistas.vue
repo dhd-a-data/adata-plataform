@@ -8,7 +8,7 @@
     </q-item-section>
     <q-item-section @click="nivel = true">
       <q-item-label>Olá, João Pipoqueiro</q-item-label>
-      <q-item-label>Nivel 1 - 10/100 XP</q-item-label>
+      <q-item-label>Nivel 1 - 20/100 XP</q-item-label>
     </q-item-section>
   </q-item>
   <q-list bordered class="rounded-borders" style="max-width: 350px;margin-top: 20px">
@@ -21,7 +21,7 @@
         </q-item-label>
       </q-item-section>
       <q-item-section side top>
-        0/5
+        <q-icon name="done"></q-icon>
       </q-item-section>
     </q-item>
 
@@ -53,7 +53,7 @@
 
       <q-card-section class="q-pt-none">
         <div class="text-subtitle1">
-          XP Atual: <strong>10/100</strong>
+          XP Atual: <strong>20/100</strong>
         </div>
 
       </q-card-section>
@@ -231,7 +231,7 @@
       <q-tab name="images" label="Missões" @click=" mission_complete = true"/>
       <q-route-tab
         label="Conquistas"
-        to="/conquistas"
+        to="/"
         exact
       />
       <q-route-tab
