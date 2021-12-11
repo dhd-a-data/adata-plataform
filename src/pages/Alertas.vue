@@ -19,7 +19,7 @@
       </q-item-section>
       <q-item-section @click="nivel = true">
         <q-item-label>Olá, <span class="text-weight-medium">João Pipoqueiro</span></q-item-label>
-        <q-item-label><q-badge style="background-color:#FF6633" text-color="white" label="10/100 XP" /></q-item-label>
+        <q-item-label><q-badge style="background-color:#FF6633" text-color="white" label="40/100 XP" /></q-item-label>
       </q-item-section>
       <q-item-section side top style="margin-top:1em;margin-right:3em;">
           <q-icon name="arrow_forward_ios" style="color:#009933"/>
@@ -103,7 +103,7 @@
         <q-card-section>
           <div class="row no-wrap items-center">
             <div class="col text-h6 ellipsis" style="color:#FF6633">
-              Seu Nível Atual: 1
+              Seu Nível Atual: 2
             </div>
             <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
               Iniciante
@@ -114,7 +114,7 @@
 
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1">
-            XP Atual: <strong>20/100</strong>
+            XP Atual: <strong>40/100</strong>
           </div>
 
         </q-card-section>
@@ -123,16 +123,14 @@
 
         <q-card-section class="q-pt-none" style="margin-top: 20px; margin-bottom: 10px">
           <div class="text-subtitle1">
-            Próximo Nível: <strong>Nível 2</strong>
+            Próximo Nível: <strong>Nível 3</strong>
           </div>
           <q-separator></q-separator>
           <div class="text-subtitle1" style="margin-top: 20px">
             Recompensas de próximo:
           </div>
           <div class="text-caption text-grey">
-            1 - Gráficos de Transações e Faturamento;
-            <br>
-            2 - Alertas de descontos em Milhos de Pipoca;
+            1 - Alertas de descontos em insumos;
           </div>
           <q-card-actions align="center">
             <q-btn v-close-popup flat color="deep-orange" label="Voltar" />

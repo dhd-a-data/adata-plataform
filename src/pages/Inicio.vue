@@ -8,7 +8,7 @@
       </q-item-section>
       <q-item-section @click="nivel = true">
         <q-item-label>Olá, <span class="text-weight-medium">João Pipoqueiro</span></q-item-label>
-        <q-item-label><q-badge style="background-color:#FF6633" text-color="white" label="10/100 XP" /></q-item-label>
+        <q-item-label><q-badge style="background-color:#FF6633" text-color="white" :label="xpLabel" /></q-item-label>
       </q-item-section>
       <q-item-section side top style="margin-top:1em;margin-right:3em;">
           <q-icon name="arrow_forward_ios" style="color:#009933"/>
@@ -32,7 +32,8 @@
       <q-list bordered class="rounded-borders" style="width: 100%; margin-top: 20px">
         <q-item-label header>Missões</q-item-label>
         <q-separator spaced />
-        <div clickable @click="loadGraph1">
+        <div v-show="showProgress">
+          <div clickable @click="loadGraph1">
           <q-item>
             <q-item-section>
               <q-item-label lines="1">Realize 5 vendas em um único dia</q-item-label>
@@ -49,6 +50,7 @@
           </div>
         </div>
         <q-separator spaced inset />
+        </div>
         <div @click="loadGraph2">
           <q-item clickable>
             <q-item-section>
@@ -70,7 +72,7 @@
         <q-card-section>
           <div class="row no-wrap items-center">
             <div class="col text-h6 ellipsis">
-              Seu Nível Atual: 1
+              Seu Nível Atual: {{ lvLabel }}
             </div>
             <div class="col-auto text-grey text-caption q-pt-md row no-wrap items-center">
               Iniciante
@@ -81,7 +83,7 @@
 
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1">
-            XP Atual: <strong>10/100</strong>
+            XP Atual: <strong>{{ xpLabel }}</strong>
           </div>
 
         </q-card-section>
@@ -90,7 +92,7 @@
 
         <q-card-section class="q-pt-none" style="margin-top: 20px; margin-bottom: 10px">
           <div class="text-subtitle1">
-            Próximo Nível: <strong>Nível 2</strong>
+            Próximo Nível: <strong>Nível {{ lvLabel + 1}}</strong>
           </div>
           <q-separator></q-separator>
           <div class="text-subtitle1" style="margin-top: 20px">
@@ -255,7 +257,7 @@
         </q-card-section>
         <q-card-section class="q-pt-none">
           <q-card-actions align="center">
-            <q-btn v-close-popup flat color="deep-orange" label="Voltar" />
+            <q-btn v-close-popup flat color="deep-orange" label="Ok" />
           </q-card-actions>
         </q-card-section>
       </q-card>
@@ -286,7 +288,7 @@
   </div>
 </template>
 <script>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { Chart } from 'frappe-charts/dist/frappe-charts.min.esm'
 import { QSpinnerFacebook } from 'quasar'
 
@@ -327,9 +329,16 @@ const data2 = {
 }
 
 export default {
+  data () {
+    return {
+      lvLabel: 1,
+      progressLabel1: '4/5'
+    }
+  },
   setup () {
-    const progress1 = ref(0.2)
+    const progress1 = ref(0.8)
     const progress2 = ref(0.5)
+    const showProgress = ref(true)
     return {
       card: ref(false),
       card_2: ref(false),
@@ -337,12 +346,13 @@ export default {
       mission_complete: ref(false),
       lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       progress1,
-      progressLabel1: computed(() => '2/5'),
       progress2,
-      progressLabel2: computed(() => '1/1'),
-      value: 10,
-      lvLabel: 1,
-      charts: null
+      progressLabel2: '1/2',
+      value: 75,
+      charts: null,
+      xpLabel: '30/40 XP',
+      hideProgress: true,
+      showProgress
     }
   },
   methods: {
@@ -394,6 +404,14 @@ export default {
   mounted () {
     setTimeout(() => {
       this.mission_complete = true
+      this.xpLabel = '40/100 XP'
+      this.lvLabel = 2
+      this.progressLabel1 = '5/5'
+      this.progress1 = 1
+      this.value = 0
+      setTimeout(() => {
+        this.showProgress = false
+      }, 1000)
     }, 5000)
   }
 }
