@@ -281,7 +281,7 @@
   <q-footer bordered class="bg-white text-primary">
     <q-tabs no-caps active-color="secondary" indicator-color="transparent" class="text-grey" v-model="tab">
       <q-route-tab
-        icon="rule"
+        icon="home"
         style="color:#FF6633"
         to="/"
         exact

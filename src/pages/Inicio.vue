@@ -227,7 +227,7 @@
   </div>
   <q-footer bordered class="bg-white text-primary">
     <q-tabs no-caps active-color="secondary" indicator-color="transparent" class="text-grey" v-model="tab">
-      <q-tab name="images" icon="rule" style="color:#44B1A7" @click=" mission_complete = true"/>
+      <q-tab name="images" icon="home" style="color:#44B1A7" @click=" mission_complete = true"/>
       <q-route-tab
         icon="hotel_class"
         style="color:#FF6633"
