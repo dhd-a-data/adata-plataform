@@ -99,9 +99,7 @@
             Recompensas de próximo:
           </div>
           <div class="text-caption text-grey">
-            1 - Gráficos de Transações e Faturamento;
-            <br>
-            2 - Alertas de descontos em Milhos de Pipoca;
+            {{ recompensaDesc }}
           </div>
           <q-card-actions align="center">
             <q-btn v-close-popup flat color="deep-orange" label="Voltar" />
@@ -352,7 +350,8 @@ export default {
       charts: null,
       xpLabel: '30/40 XP',
       hideProgress: true,
-      showProgress
+      showProgress,
+      recompensaDesc: '1 - Gráfico: Perfil do Estabelecimento'
     }
   },
   methods: {
@@ -409,6 +408,7 @@ export default {
       this.progressLabel1 = '5/5'
       this.progress1 = 1
       this.value = 0
+      this.recompensaDesc = '1 - Alertas de descontos em insumos'
       setTimeout(() => {
         this.showProgress = false
       }, 1000)
