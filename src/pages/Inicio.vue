@@ -161,7 +161,7 @@
       </q-card>
     </q-dialog>
     <q-dialog v-model="card_2">
-      <q-card class="my-card" style="min-width: 10em;">
+      <q-card class="my-card" style="max-width: 1500px;width:1000px;">
         <q-card-section>
           <div class="row no-wrap items-center">
             <q-item style="padding-left:0px;">
