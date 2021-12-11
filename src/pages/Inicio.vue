@@ -11,9 +11,9 @@
       <q-item-label>Nivel 1 - 10/100 XP</q-item-label>
     </q-item-section>
   </q-item>
-  <q-list bordered class="rounded-borders" style="max-width: 350px;margin-top: 20px">
+  <q-list bordered class="rounded-borders" style="max-width: 350px; margin-top: 20px">
     <q-item-label header>Missões</q-item-label>
-
+    <q-separator spaced />
     <q-item clickable v-ripple @click="card = true">
       <q-item-section>
         <q-item-label lines="1">Realize 5 vendas</q-item-label>
@@ -25,7 +25,7 @@
       </q-item-section>
     </q-item>
 
-    <q-separator/>
+    <q-separator spaced inset />
 
     <q-item clickable v-ripple @click="card_2 = true">
       <q-item-section>
