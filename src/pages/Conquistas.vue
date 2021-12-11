@@ -227,19 +227,31 @@
     </q-card>
   </q-dialog>
   <q-footer bordered class="bg-white text-primary">
-    <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-grey" v-model="tab">
-      <q-tab name="images" label="Missões" @click=" mission_complete = true"/>
+    <q-tabs no-caps active-color="secondary" indicator-color="transparent" class="text-grey" v-model="tab">
       <q-route-tab
-        label="Conquistas"
+        icon="rule"
+        style="color:#FF6633"
+        to="/"
+        exact
+      />
+      <q-route-tab
+        icon="hotel_class"
+        style="color:#FF6633"
         to="/conquistas"
         exact
       />
       <q-route-tab
-        label="Gráficos"
+        icon="analytics"
+        style="color:#FF6633"
         to="/graficos"
         exact
       />
-      <q-tab name="articles" label="Notificações"/>
+      <q-route-tab
+        icon="notifications_active"
+        style="color:#FF6633"
+        to="/alertas"
+        exact
+      />
     </q-tabs>
   </q-footer>
 </template>

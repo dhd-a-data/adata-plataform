@@ -3,7 +3,7 @@
   <q-item clickable v-ripple style="margin-top:3em;">
     <q-item-section side>
       <q-avatar>
-        <img src="https://cdn.quasar.dev/img/avatar.png">
+        <img src="https://emc.acidadeon.com/dbimagens/leoncio_irmaos_790x444_28062021192657.webp">
       </q-avatar>
     </q-item-section>
     <q-item-section @click="nivel = true">
@@ -118,9 +118,6 @@
         <div class="text-caption text-grey">
           Você realiza em média 3.
         </div>
-        <div id="chart">
-
-        </div>
         <div class="text-subtitle1">
           Grafico aqui!
         </div>
@@ -226,21 +223,26 @@
       </q-card-section>
     </q-card>
   </q-dialog>
+  <div id="chart">
+  </div>
   <q-footer bordered class="bg-white text-primary">
-    <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-grey" v-model="tab">
-      <q-tab name="images" label="Missões" @click=" mission_complete = true"/>
+    <q-tabs no-caps active-color="secondary" indicator-color="transparent" class="text-grey" v-model="tab">
+      <q-tab name="images" icon="rule" style="color:#44B1A7" @click=" mission_complete = true"/>
       <q-route-tab
-        label="Conquistas"
+        icon="hotel_class"
+        style="color:#FF6633"
         to="/conquistas"
         exact
       />
       <q-route-tab
-        label="Gráficos"
+        icon="analytics"
+        style="color:#FF6633"
         to="/graficos"
         exact
       />
       <q-route-tab
-        label="Notificações"
+        icon="notifications_active"
+        style="color:#FF6633"
         to="/alertas"
         exact
       />
@@ -249,26 +251,28 @@
 </template>
 <script>
 import { ref } from 'vue'
-import ApexCharts from 'apexcharts'
+import { Chart } from 'frappe-charts/dist/frappe-charts.min.esm'
+
+const data = {
+  labels: ['12am-3am', '3am-6pm', '6am-9am', '9am-12am',
+    '12pm-3pm', '3pm-6pm', '6pm-9pm', '9am-12am'
+  ],
+  datasets: [
+    {
+      name: 'Some Data',
+      type: 'bar',
+      values: [25, 40, 30, 35, 8, 52, 17, -4]
+    },
+    {
+      name: 'Another Set',
+      type: 'line',
+      values: [25, 50, -10, 15, 18, 32, 27, 14]
+    }
+  ]
+}
 
 export default {
   data () {
-    const options = {
-      chart: {
-        type: 'line'
-      },
-      series: [{
-        name: 'sales',
-        data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-      }],
-      xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-      }
-    }
-
-    const chart = new ApexCharts(document.querySelector('#chart'), options)
-
-    chart.render()
   },
   setup () {
     return {
@@ -278,10 +282,20 @@ export default {
       mission_complete: ref(false),
       lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
+  },
+  mounted () {
+    // eslint-disable-next-line no-unused-vars
+    const charts = new Chart('#chart', {
+      title: 'My Awesome Chart',
+      data: data,
+      type: 'axis-mixed', // or 'bar', 'line', 'scatter', 'pie', 'percentage'
+      height: 250,
+      colors: ['#7cd6fd', '#743ee2']
+    })
   }
 }
 </script>
-<style lang="sass" scoped>
+<style lang='sass' scoped>
   .my-card
     width: 100%
     max-width: 250px
