@@ -291,7 +291,11 @@
         to="/graficos"
         exact
       />
-      <q-tab name="articles" label="Notificações"/>
+      <q-route-tab
+        label="Notificações"
+        to="/alertas"
+        exact
+      />
     </q-tabs>
   </q-footer>
 </template>
@@ -314,7 +318,7 @@ export default {
       }
     }
 
-    var chart = new ApexCharts(document.querySelector('#chart'), options)
+    const chart = new ApexCharts(document.querySelector('#chart'), options)
 
     chart.render()
   },

@@ -52,7 +52,7 @@
       <q-tab name="images" label="Missões" @click=" mission_complete = true"/>
       <q-route-tab
         label="Conquistas"
-        to="/"
+        to="/conquistas"
         exact
       />
       <q-route-tab
@@ -87,7 +87,7 @@ export default {
       }
     }
 
-    var chart = new ApexCharts(document.querySelector('#chart'), options)
+    const chart = new ApexCharts(document.querySelector('#chart'), options)
 
     chart.render()
   },
