@@ -3,7 +3,7 @@
   <q-item clickable v-ripple style="margin-top:3em;">
     <q-item-section side>
       <q-avatar>
-        <img src="~assets/popcorn-avatr.png">
+        <img src="~assets/pipoqueiro.png">
       </q-avatar>
     </q-item-section>
     <q-item-section @click="nivel = true">
@@ -249,7 +249,7 @@
   </q-dialog>
   <q-footer bordered class="bg-white text-primary">
     <q-tabs no-caps active-color="secondary" indicator-color="transparent" class="text-grey" v-model="tab">
-      <q-tab name="images" icon="rule" style="color:#44B1A7"/>
+      <q-tab name="images" icon="home" style="color:#44B1A7"/>
       <q-route-tab
         icon="hotel_class"
         style="color:#FF6633"

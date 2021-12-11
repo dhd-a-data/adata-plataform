@@ -12,7 +12,7 @@
   <q-item clickable v-ripple style="margin-top:3em;">
     <q-item-section side>
       <q-avatar>
-        <img src="~assets/popcorn-avatr.png">
+        <img src="~assets/pipoqueiro.png">
       </q-avatar>
     </q-item-section>
     <q-item-section @click="nivel = true">
