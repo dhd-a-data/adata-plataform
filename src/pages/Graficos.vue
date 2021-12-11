@@ -14,30 +14,26 @@
   <q-list bordered class="rounded-borders" style="max-width: 350px;margin-top: 20px">
     <q-item-label header>Perfil do Estabelecimento Nível 2</q-item-label>
         <q-carousel
+          v-model="slide"
+          transition-prev="scale"
+          transition-next="scale"
           swipeable
           animated
+          control-color="black"
+          navigation
+          padding
           arrows
-          v-model="slide"
-          v-model:fullscreen="fullscreen"
-          infinite
+          height="300px"
+          class="shadow-1 rounded-borders"
         >
-          <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg"/>
-          <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg"/>
-          <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg"/>
-          <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg"/>
-
-          <template v-slot:control>
-            <q-carousel-control
-              position="bottom-right"
-              :offset="[18, 18]"
-            >
-              <q-btn
-                push round dense color="white" text-color="primary"
-                :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
-                @click="fullscreen = !fullscreen"
-              />
-            </q-carousel-control>
-          </template>
+          <q-carousel-slide name="graph1" class="column no-wrap" style="padding:0px;">
+            <div id="chartGraph">
+            </div>
+          </q-carousel-slide>
+          <q-carousel-slide name="graph2" class="column no-wrap" style="padding:0px;">
+            <div id="chartGraph2">
+            </div>
+          </q-carousel-slide>
         </q-carousel>
     <q-separator/>
     <q-item-label header style="background-color:gray; color: white">Perfil dos Consumidores
@@ -78,37 +74,89 @@
 </template>
 <script>
 import { ref } from 'vue'
-import ApexCharts from 'apexcharts'
-
-export default {
-  data () {
-    const options = {
-      chart: {
-        type: 'line'
-      },
-      series: [{
-        name: 'sales',
-        data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-      }],
-      xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-      }
+import { Chart } from 'frappe-charts/dist/frappe-charts.min.esm'
+const data = {
+  labels: ['12am-3am', '3am-6pm', '6am-9am', '9am-12am',
+    '12pm-3pm', '3pm-6pm', '6pm-9pm', '9am-12am'
+  ],
+  datasets: [
+    {
+      name: 'Some Data',
+      type: 'bar',
+      values: [25, 40, 30, 35, 8, 52, 17, -4]
+    },
+    {
+      name: 'Another Set',
+      type: 'line',
+      values: [25, 50, -10, 15, 18, 32, 27, 14]
     }
-
-    const chart = new ApexCharts(document.querySelector('#chart'), options)
-
-    chart.render()
-  },
+  ]
+}
+export default {
   setup () {
     return {
       card: ref(false),
       card_2: ref(false),
       nivel: ref(false),
-      slide: ref(1),
       fullscreen: ref(false),
       mission_complete: ref(false),
+      charts: null,
+      slide: ref('graph1'),
       lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
+  },
+  watch: {
+    slide: function (val) {
+      switch (val) {
+        case 'graph1':
+          this.loadGraph1()
+          break
+        case 'graph2':
+          this.loadGraph2()
+          break
+        default:
+          console('não tem!')
+      }
+    }
+  },
+  methods: {
+    loadGraph1 () {
+      console.log('verificando slide: ', this.slide)
+      setTimeout(() => {
+        // eslint-disable-next-line no-unused-vars
+        this.charts = new Chart('#chartGraph', {
+          title: 'My Awesome Chart',
+          data: data,
+          type: 'axis-mixed', // or 'bar', 'line', 'scatter', 'pie', 'percentage'
+          height: 250,
+          colors: ['#FF6633', '#009933'],
+          lineOptions: {
+            dotSize: 6 // default: 4
+          }
+        })
+        this.$q.loading.hide()
+      }, 500)
+    },
+    loadGraph2 () {
+      console.log('verificando slide: ', this.slide)
+      setTimeout(() => {
+        // eslint-disable-next-line no-unused-vars
+        const charts2 = new Chart('#chartGraph2', {
+          title: 'Grafico 2',
+          data: data,
+          type: 'axis-mixed', // or 'bar', 'line', 'scatter', 'pie', 'percentage'
+          height: 250,
+          colors: ['#7cd6fd', '#743ee2'],
+          lineOptions: {
+            dotSize: 6 // default: 4
+          }
+        })
+        this.$q.loading.hide()
+      }, 500)
+    }
+  },
+  mounted () {
+    this.loadGraph1()
   }
 }
 </script>

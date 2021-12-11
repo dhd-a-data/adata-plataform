@@ -1,12 +1,14 @@
 <template>
   <div class="q-pa-md q-gutter-md"></div>
-  <q-banner class="bg-primary text-white">
+  <q-dialog v-model="alerta" position="top">
+    <q-banner class="bg-primary text-white">
       Oportunidade! O preço do insumo "Milho para Pipoca Yoki" baixou. Valor atual R$ 1,85.
       <template v-slot:action>
         <q-btn flat color="white" label="Ver" />
-        <q-btn flat color="white" label="Fechar" />
+        <q-btn flat color="white" label="Fechar" @click="alerta = false" />
       </template>
     </q-banner>
+  </q-dialog>
   <q-item clickable v-ripple style="margin-top:3em;">
     <q-item-section side>
       <q-avatar>
@@ -18,7 +20,25 @@
       <q-item-label>Nivel 1 - 20/100 XP</q-item-label>
     </q-item-section>
   </q-item>
-  <q-list>
+  <q-list style="margin-top:2em;">
+      <div v-show="notification">
+        <q-item >
+          <q-item-section>
+            <q-item-label>Oportunidade</q-item-label>
+            <q-item-label caption>Aproveite a baixa do preço do insumo "Milho de Pipoca Yoki" por R$ 1,85 .</q-item-label>
+          </q-item-section>
+
+          <q-item-section side top>
+            <q-item-label caption>agora</q-item-label>
+
+            <q-icon name="attach_money" style="color: darkgreen" />
+
+          </q-item-section>
+        </q-item>
+
+        <q-separator spaced inset />
+      </div>
+
       <q-item>
         <q-item-section>
           <q-item-label>Você alcançou o Nível 2</q-item-label>
@@ -56,22 +76,6 @@
 
         <q-item-section side top>
           <q-badge color="teal" label="10XP" />
-        </q-item-section>
-      </q-item>
-
-      <q-separator spaced inset />
-
-      <q-item>
-        <q-item-section>
-          <q-item-label>Oportunidade</q-item-label>
-          <q-item-label caption>Aproveite a baixa do preço do insumo "Milho de Pipoca Yoki" por R$ 1,85 .</q-item-label>
-        </q-item-section>
-
-        <q-item-section side top>
-          <q-item-label caption>5 horas atrás</q-item-label>
-
-          <q-icon name="attach_money" style="color: darkgreen" />
-
         </q-item-section>
       </q-item>
 
@@ -309,35 +313,24 @@
 </template>
 <script>
 import { ref } from 'vue'
-import ApexCharts from 'apexcharts'
 
 export default {
-  data () {
-    const options = {
-      chart: {
-        type: 'line'
-      },
-      series: [{
-        name: 'sales',
-        data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-      }],
-      xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-      }
-    }
-
-    const chart = new ApexCharts(document.querySelector('#chart'), options)
-
-    chart.render()
-  },
   setup () {
     return {
+      alerta: ref(false),
       card: ref(false),
       card_2: ref(false),
       nivel: ref(false),
+      notification: ref(false),
       mission_complete: ref(false),
       lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.alerta = true
+      this.notification = true
+    }, 5000)
   }
 }
 </script>
