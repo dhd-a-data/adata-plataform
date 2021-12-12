@@ -68,7 +68,7 @@
       </q-list>
     </div>
     <q-dialog v-model="nivel">
-      <q-card class="my-card" style="min-width: 10em;">
+      <q-card class="my-card" style="min-width: 350px">
         <q-card-section>
           <div class="row no-wrap items-center">
             <div class="col text-h6 ellipsis">
